@@ -1,0 +1,46 @@
+---
+import teamImg from "../assets/images/about/team.jpg";
+---
+
+<section id="nosotros" class="bg-white px-6 py-20 md:px-20">
+  <div class="mx-auto flex max-w-[1280px] flex-col items-center gap-12 md:flex-row md:gap-16">
+    <!-- Left -->
+    <div class="flex flex-1 flex-col gap-6">
+      <span class="text-xs font-semibold tracking-[3px] text-indigo">NOSOTROS</span>
+      <h2 class="font-serif text-3xl font-semibold leading-[1.1] tracking-[-1.5px] text-dark md:text-[40px]" data-reveal>
+        Más de 15 años<br />creando valor en cada<br />proyecto de construcción
+      </h2>
+      <p class="max-w-[480px] text-[15px] leading-relaxed text-text-secondary" data-reveal>
+        Somos un grupo de líderes profesionales sumando experiencia en la gestión de proyectos mediante tecnología moderna. Creamos valor colaborando con especialistas, actuando con agilidad y flexibilidad para asegurar el éxito del negocio de cada cliente.
+      </p>
+
+      <!-- Misión + Visión -->
+      <div class="mt-2 flex flex-col gap-4 sm:flex-row" data-reveal>
+        <div class="flex-1 rounded-2xl bg-elevated p-5">
+          <h4 class="text-base font-bold text-dark">Misión</h4>
+          <p class="mt-2 text-[13px] leading-relaxed text-text-secondary">
+            Generar valor al cliente creando soluciones para rentabilidad y óptima operación mediante gestión colaborativa BIM.
+          </p>
+        </div>
+        <div class="flex-1 rounded-2xl bg-elevated p-5">
+          <h4 class="text-base font-bold text-dark">Visión</h4>
+          <p class="mt-2 text-[13px] leading-relaxed text-text-secondary">
+            Ser el mejor socio estratégico para la obtención de mejores beneficios con gestión BIM y excelente gestión del talento.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Image Gallery -->
+    <div class="relative w-full md:w-[480px]" data-reveal>
+      <!-- Main photo -->
+      <div class="h-[400px] overflow-hidden rounded-3xl md:h-[460px]">
+        <img src="/images/720bim-original/05-equipo-obra-grupo.jpg" alt="Equipo 720 BIM" class="h-full w-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy" />
+      </div>
+      <!-- Overlapping secondary photo -->
+      <div class="absolute -bottom-8 -left-8 h-[180px] w-[220px] overflow-hidden rounded-2xl border-4 border-white shadow-xl md:-left-12">
+        <img src="/images/720bim-original/04-selfie-drone-mano.jpg" alt="Equipo con drone" class="h-full w-full object-cover" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>

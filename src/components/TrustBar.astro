@@ -1,0 +1,16 @@
+---
+const logos = ["COSAPI", "REAL PLAZA", "PROMART", "CENCOSUD", "GRAÑA Y MONTERO"];
+---
+
+<section class="border-y border-black/[0.04] bg-white px-6 py-7 md:px-20">
+  <p class="mb-5 text-center text-[10px] font-medium tracking-[3px] text-text-tertiary">
+    CLIENTES QUE CONFÍAN EN NUESTRA TECNOLOGÍA
+  </p>
+  <div class="flex flex-wrap items-center justify-center gap-8 md:gap-14">
+    {logos.map((name) => (
+      <span class="text-sm font-bold tracking-[2px] text-text-muted transition-colors duration-300 hover:text-text-secondary md:text-base">
+        {name}
+      </span>
+    ))}
+  </div>
+</section>

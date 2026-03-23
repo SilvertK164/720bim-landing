@@ -1,0 +1,57 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "720 BIM — Tecnología BIM para Construcción",
+  description = "Transformamos proyectos de ingeniería y construcción con tecnología BIM de vanguardia. Coordinación, inspección y drones.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#FAFAFA" />
+
+    <!-- OG Meta -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_PE" />
+
+    <!-- Font Preload (critical) -->
+    <link
+      rel="preload"
+      href="/fonts/Fraunces-Variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/DMSans-Variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body class="overflow-x-hidden">
+    <slot />
+    <script>
+      import "../scripts/smooth-scroll";
+      import "../scripts/scroll-reveal";
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  @import "../styles/global.css";
+</style>

@@ -1,0 +1,147 @@
+---
+// Detect page type — articles have hero images so header starts dark
+const isArticle = Astro.url.pathname.startsWith("/articulos/") && Astro.url.pathname !== "/articulos/";
+const isInternal = Astro.url.pathname !== "/" && !isArticle;
+
+const navLinks = [
+  { label: "Inicio", href: "/#hero" },
+  { label: "Servicios", href: "/#tech" },
+  { label: "Proyectos", href: "/#proyectos" },
+  { label: "Nosotros", href: "/#nosotros" },
+  { label: "Contacto", href: "/#contacto" },
+];
+---
+
+<header id="main-header" class="fixed top-0 left-0 right-0 z-50">
+  <nav
+    id="main-nav"
+    class:list={[
+      "mx-auto mt-3 flex max-w-[1100px] items-center justify-between rounded-2xl border px-8 py-3.5 backdrop-blur-xl transition-all duration-500",
+      isInternal
+        ? "bg-white/90 border-black/[0.06] shadow-sm"
+        : "bg-black/30 border-white/[0.08]",
+    ]}
+    data-page-type={isInternal ? "internal" : isArticle ? "article" : "landing"}
+  >
+    <a href="/" class="flex items-center">
+      <img src="/images/720bim.svg" alt="720 BIM" class:list={["h-5 w-auto", !isInternal && "invert", isArticle && "invert"]} id="nav-logo" />
+    </a>
+
+    <div class="hidden items-center gap-8 md:flex">
+      {navLinks.map((link, i) => (
+        <a
+          href={link.href}
+          class:list={[
+            "nav-link text-sm font-medium transition-colors duration-300",
+            isInternal
+              ? "text-dark/60 hover:text-dark"
+              : (isArticle || !isInternal) && i === 0
+                ? "text-white font-semibold hover:text-white"
+                : isArticle
+                  ? "text-white/50 hover:text-white"
+                  : "text-white/50 hover:text-white",
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+
+    <a
+      href="/#contacto"
+      id="nav-cta"
+      class:list={[
+        "hidden items-center gap-2 rounded-full px-6 py-2.5 text-[13px] font-semibold transition-transform duration-300 hover:scale-105 md:flex",
+        isInternal
+          ? "bg-dark text-white"
+          : "bg-white text-dark", /* landing & article start with white btn */
+      ]}
+    >
+      Hablemos
+      <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10" /></svg>
+    </a>
+
+    <button id="mobile-menu-btn" class="flex md:hidden" aria-label="Abrir menú">
+      <svg class:list={["h-6 w-6", isInternal ? "text-dark" : "text-white"]} id="mobile-menu-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M3.75 9h16.5M3.75 15.75h16.5" /></svg>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="pointer-events-none fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-white/95 opacity-0 backdrop-blur-2xl transition-opacity duration-500 md:hidden">
+    <button id="mobile-menu-close" class="absolute top-8 right-8" aria-label="Cerrar menú">
+      <svg class="h-6 w-6 text-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M6 18L18 6M6 6l12 12" /></svg>
+    </button>
+    {navLinks.map((link) => (
+      <a href={link.href} class="mobile-nav-link text-2xl font-medium text-text-secondary hover:text-dark">{link.label}</a>
+    ))}
+    <a href="/#contacto" class="mt-4 rounded-full bg-dark px-8 py-3 font-semibold text-white">Hablemos</a>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById("mobile-menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  const closeBtn = document.getElementById("mobile-menu-close");
+  const links = menu?.querySelectorAll(".mobile-nav-link");
+
+  function toggle(open: boolean) {
+    menu?.classList.toggle("pointer-events-none", !open);
+    menu?.classList.toggle("opacity-0", !open);
+    menu?.classList.toggle("pointer-events-auto", open);
+    menu?.classList.toggle("opacity-100", open);
+    document.body.style.overflow = open ? "hidden" : "";
+  }
+
+  btn?.addEventListener("click", () => toggle(true));
+  closeBtn?.addEventListener("click", () => toggle(false));
+  links?.forEach((l) => l.addEventListener("click", () => toggle(false)));
+
+  // Run scroll-based header changes on landing AND article pages
+  const nav = document.getElementById("main-nav");
+  const pageType = nav?.dataset.pageType;
+  const isStaticInternal = pageType === "internal";
+
+  if (!isStaticInternal) {
+    const logo = document.getElementById("nav-logo");
+    const navLinks = nav?.querySelectorAll(".nav-link");
+    const ctaBtn = document.getElementById("nav-cta");
+    const menuIcon = document.getElementById("mobile-menu-icon");
+
+    function updateHeader() {
+      // On landing use hero section height, on articles use the hero image div
+      const heroEl = document.getElementById("hero") || document.querySelector("main > div:first-child");
+      const heroHeight = heroEl?.offsetHeight || 600;
+      const scrolled = window.scrollY > heroHeight - 100;
+      if (!nav) return;
+
+      if (scrolled) {
+        nav.classList.remove("bg-black/30", "border-white/[0.08]");
+        nav.classList.add("bg-white/90", "border-black/[0.06]", "shadow-sm");
+        logo?.classList.remove("invert");
+        menuIcon?.classList.remove("text-white");
+        menuIcon?.classList.add("text-dark");
+        navLinks?.forEach((l) => {
+          l.classList.remove("text-white", "text-white/50");
+          l.classList.add("text-dark/60");
+        });
+        ctaBtn?.classList.remove("bg-white", "text-dark");
+        ctaBtn?.classList.add("bg-dark", "text-white");
+      } else {
+        nav.classList.add("bg-black/30", "border-white/[0.08]");
+        nav.classList.remove("bg-white/90", "border-black/[0.06]", "shadow-sm");
+        logo?.classList.add("invert");
+        menuIcon?.classList.add("text-white");
+        menuIcon?.classList.remove("text-dark");
+        navLinks?.forEach((l) => {
+          l.classList.add("text-white/50");
+          l.classList.remove("text-dark/60");
+        });
+        ctaBtn?.classList.add("bg-white", "text-dark");
+        ctaBtn?.classList.remove("bg-dark", "text-white");
+      }
+    }
+
+    window.addEventListener("scroll", updateHeader, { passive: true });
+    updateHeader();
+  }
+</script>

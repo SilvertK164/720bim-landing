@@ -1,0 +1,139 @@
+backend:
+  name: github
+  repo: SilvertK164/720bim-landing
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+locale: "es"
+
+collections:
+  - name: "articles"
+    label: "Artículos"
+    label_singular: "Artículo"
+    folder: "src/content/articles"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    sortable_fields: ["date", "title"]
+    summary: "{{title}} — {{tag}} ({{date}})"
+    fields:
+      - label: "Título"
+        name: "title"
+        widget: "string"
+        hint: "El título principal del artículo"
+
+      - label: "Etiqueta"
+        name: "tag"
+        widget: "string"
+        hint: "Ej: Tecnología, Normativa, Innovación"
+
+      - label: "Color de etiqueta"
+        name: "tagColor"
+        widget: "select"
+        options:
+          - { label: "Azul (Indigo)", value: "indigo" }
+          - { label: "Verde", value: "green" }
+          - { label: "Rojo (Coral)", value: "coral" }
+          - { label: "Amarillo (Amber)", value: "amber" }
+
+      - label: "Fecha"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "DD/MM/YYYY"
+        time_format: false
+
+      - label: "Imagen principal"
+        name: "image"
+        widget: "image"
+        hint: "Imagen que aparece en la card y en el hero del artículo"
+
+      - label: "Resumen"
+        name: "excerpt"
+        widget: "text"
+        hint: "Descripción breve que aparece en la tarjeta (2-3 líneas)"
+
+      - label: "Referencias / Papers"
+        name: "paperLinks"
+        widget: "list"
+        required: false
+        hint: "Links a papers académicos o documentos de referencia"
+        fields:
+          - { label: "Título", name: "title", widget: "string" }
+          - { label: "URL", name: "url", widget: "string" }
+
+      - label: "Borrador"
+        name: "draft"
+        widget: "boolean"
+        default: false
+        hint: "Si está activado, el artículo NO se muestra en la web"
+
+      - label: "Contenido"
+        name: "body"
+        widget: "markdown"
+        hint: "Contenido completo del artículo"
+
+  - name: "projects"
+    label: "Proyectos"
+    label_singular: "Proyecto"
+    folder: "src/content/projects"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    sortable_fields: ["order", "year", "title"]
+    summary: "{{title}} — {{status}} ({{year}})"
+    fields:
+      - label: "Título del proyecto"
+        name: "title"
+        widget: "string"
+
+      - label: "Cliente"
+        name: "client"
+        widget: "string"
+        hint: "Ej: Real Plaza, Promart, Sector Público"
+
+      - label: "Servicios"
+        name: "services"
+        widget: "string"
+        hint: "Ej: Coordinación BIM + Drones"
+
+      - label: "Estado"
+        name: "status"
+        widget: "select"
+        options:
+          - { label: "Activo", value: "activo" }
+          - { label: "En ejecución", value: "en-ejecucion" }
+          - { label: "Completado", value: "completado" }
+
+      - label: "Año"
+        name: "year"
+        widget: "number"
+        value_type: "int"
+        min: 2009
+        max: 2030
+
+      - label: "Imagen"
+        name: "image"
+        widget: "image"
+        hint: "Foto del proyecto para el carrusel"
+
+      - label: "Video YouTube (ID)"
+        name: "videoId"
+        widget: "string"
+        required: false
+        hint: "Solo el ID del video. Ej: si la URL es youtube.com/watch?v=ABC123, poner ABC123"
+
+      - label: "Destacado"
+        name: "featured"
+        widget: "boolean"
+        default: true
+        hint: "Si está activado, aparece en el carrusel de la landing"
+
+      - label: "Orden"
+        name: "order"
+        widget: "number"
+        value_type: "int"
+        default: 0
+        hint: "Orden en el carrusel (menor = aparece primero)"
