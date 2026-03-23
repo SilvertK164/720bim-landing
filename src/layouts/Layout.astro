@@ -42,12 +42,21 @@ const {
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+
+    <!-- View Transitions -->
+    <style>
+      @view-transition { navigation: auto; }
+    </style>
   </head>
   <body class="overflow-x-hidden">
     <slot />
     <script>
       import "../scripts/smooth-scroll";
       import "../scripts/scroll-reveal";
+      import "../scripts/cursor";
+      import "../scripts/tilt-cards";
+      import "../scripts/typewriter";
+      import "../scripts/vanta-bg";
     </script>
   </body>
 </html>

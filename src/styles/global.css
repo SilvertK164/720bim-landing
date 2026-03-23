@@ -113,3 +113,74 @@ body {
     transition: none;
   }
 }
+
+/* ===== Custom Cursor ===== */
+#custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  transition: transform 0.1s;
+  z-index: 100001;
+}
+
+.cursor-ring {
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s,
+              background 0.3s,
+              mix-blend-mode 0.3s;
+  z-index: 100000;
+}
+
+/* Hide default cursor when custom is active */
+@media (pointer: fine) {
+  * { cursor: none !important; }
+}
+
+/* ===== TypeIt Cursor ===== */
+.ti-cursor {
+  font-weight: 200;
+  color: var(--color-indigo);
+  margin-left: 2px;
+  font-size: 0.85em;
+}
+
+/* ===== Vanilla Tilt Glare ===== */
+.js-tilt-glare {
+  border-radius: inherit;
+}
+
+/* ===== View Transitions ===== */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.3s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ===== Vanta.js container ===== */
+#vanta-cta canvas {
+  border-radius: inherit;
+}
