@@ -2,6 +2,7 @@ backend:
   name: github
   repo: SilvertK164/720bim-landing
   branch: main
+  base_url: https://api.sveltia.com
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
