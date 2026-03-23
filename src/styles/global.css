@@ -121,7 +121,7 @@ body {
   left: 0;
   z-index: 99999;
   pointer-events: none;
-  transition: opacity 0.3s;
+  transition: opacity 0.2s;
 }
 
 .cursor-dot {
@@ -130,12 +130,17 @@ body {
   background: white;
   border-radius: 50%;
   position: fixed;
-  top: 0;
-  left: 0;
   pointer-events: none;
   mix-blend-mode: difference;
-  transition: transform 0.1s;
   z-index: 100001;
+  will-change: left, top;
+  transition: width 0.2s, height 0.2s, opacity 0.2s;
+}
+
+.cursor-dot-hover {
+  width: 4px;
+  height: 4px;
+  opacity: 0.5;
 }
 
 .cursor-ring {
@@ -144,15 +149,31 @@ body {
   border: 1.5px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   position: fixed;
-  top: 0;
-  left: 0;
   pointer-events: none;
-  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.3s,
-              background 0.3s,
-              mix-blend-mode 0.3s;
+  will-change: left, top;
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s,
+              background 0.25s,
+              mix-blend-mode 0.25s;
   z-index: 100000;
+}
+
+/* Interactive element hover */
+.cursor-ring.cursor-hover {
+  width: 60px;
+  height: 60px;
+  border-color: rgba(99, 102, 241, 0.4);
+  background: rgba(99, 102, 241, 0.06);
+}
+
+/* Text hover — blend mode */
+.cursor-ring.cursor-text {
+  width: 80px;
+  height: 80px;
+  mix-blend-mode: difference;
+  background: white;
+  border-color: transparent;
 }
 
 /* Hide default cursor when custom is active */
