@@ -1,54 +1,66 @@
-// Vanta.js animated background for CTA section
-import * as THREE from "three";
-
-function initVanta() {
+// Minimal particles background for CTA section
+function initParticles() {
   const el = document.getElementById("vanta-cta");
-  if (!el) return;
-  if ((el as any)._vantaEffect) return; // already initialized
+  if (!el || el.querySelector("canvas")) return;
 
-  // Dynamic import to reduce initial bundle
-  import("vanta/dist/vanta.net.min").then((VANTA) => {
-    const effect = (VANTA as any).default({
-      el,
-      THREE,
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200,
-      minWidth: 200,
-      scale: 1.0,
-      scaleMobile: 1.0,
-      color: 0x6366f1,         // indigo
-      backgroundColor: 0x0a0a0a, // dark
-      points: 8,
-      maxDistance: 22,
-      spacing: 18,
-      showDots: true,
+  import("@tsparticles/slim").then(async ({ loadSlim }) => {
+    const { tsParticles } = await import("@tsparticles/engine");
+    await loadSlim(tsParticles);
+
+    await tsParticles.load({
+      id: "cta-particles",
+      element: el,
+      options: {
+        fullScreen: false,
+        background: { color: "transparent" },
+        fpsLimit: 60,
+        particles: {
+          number: { value: 40, density: { enable: true, width: 800, height: 500 } },
+          color: { value: "#6366f1" },
+          opacity: { value: { min: 0.1, max: 0.4 } },
+          size: { value: { min: 1, max: 3 } },
+          move: {
+            enable: true,
+            speed: 0.4,
+            direction: "none" as const,
+            outModes: "out" as const,
+          },
+          links: {
+            enable: true,
+            distance: 140,
+            color: "#6366f1",
+            opacity: 0.08,
+            width: 1,
+          },
+        },
+        interactivity: {
+          events: {
+            onHover: { enable: true, mode: "grab" },
+          },
+          modes: {
+            grab: { distance: 160, links: { opacity: 0.2 } },
+          },
+        },
+        detectRetina: true,
+      },
     });
-    (el as any)._vantaEffect = effect;
-  }).catch(() => {
-    // Fallback: just keep the CSS background
-    console.log("Vanta.js could not load, using fallback background");
+  }).catch((err) => {
+    console.log("Particles fallback:", err.message);
   });
 }
 
-// Observe when CTA enters viewport to init (lazy)
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        initVanta();
-        observer.unobserve(entry.target);
-      }
-    });
-  },
-  { rootMargin: "200px" }
-);
-
 const ctaEl = document.getElementById("vanta-cta");
-if (ctaEl) observer.observe(ctaEl);
-
-document.addEventListener("astro:page-load", () => {
-  const el = document.getElementById("vanta-cta");
-  if (el) observer.observe(el);
-});
+if (ctaEl) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          initParticles();
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: "200px" }
+  );
+  observer.observe(ctaEl);
+}

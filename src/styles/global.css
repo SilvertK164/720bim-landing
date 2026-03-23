@@ -114,69 +114,33 @@ body {
   }
 }
 
-/* ===== Custom Cursor ===== */
-#custom-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 99999;
-  pointer-events: none;
-  transition: opacity 0.2s;
-}
-
+/* ===== Custom Cursor — Always Visible Dot ===== */
 .cursor-dot {
-  width: 8px;
-  height: 8px;
-  background: white;
+  width: 12px;
+  height: 12px;
+  background: rgba(99, 102, 241, 0.45);
+  border: 1.5px solid rgba(99, 102, 241, 0.7);
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
-  mix-blend-mode: difference;
   z-index: 100001;
   will-change: left, top;
-  transition: width 0.2s, height 0.2s, opacity 0.2s;
-}
-
-.cursor-dot-hover {
-  width: 4px;
-  height: 4px;
-  opacity: 0.5;
-}
-
-.cursor-ring {
-  width: 40px;
-  height: 40px;
-  border: 1.5px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  will-change: left, top;
-  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              height 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.25s,
+  transition: width 0.25s cubic-bezier(0.16,1,0.3,1),
+              height 0.25s cubic-bezier(0.16,1,0.3,1),
               background 0.25s,
-              mix-blend-mode 0.25s;
-  z-index: 100000;
+              border-color 0.25s,
+              opacity 0.2s;
 }
 
-/* Interactive element hover */
-.cursor-ring.cursor-hover {
-  width: 60px;
-  height: 60px;
-  border-color: rgba(99, 102, 241, 0.4);
-  background: rgba(99, 102, 241, 0.06);
+/* Hover on interactive elements */
+.cursor-dot.cursor-dot-hover {
+  width: 20px;
+  height: 20px;
+  background: rgba(99, 102, 241, 0.3);
+  border-color: rgba(99, 102, 241, 0.6);
 }
 
-/* Text hover — blend mode */
-.cursor-ring.cursor-text {
-  width: 80px;
-  height: 80px;
-  mix-blend-mode: difference;
-  background: white;
-  border-color: transparent;
-}
-
-/* Hide default cursor when custom is active */
+/* Hide default cursor */
 @media (pointer: fine) {
   * { cursor: none !important; }
 }
