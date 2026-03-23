@@ -1,0 +1,219 @@
+---
+const services = [
+  {
+    icon: "coordination",
+    tag: "Core BIM",
+    tagColor: "indigo",
+    title: "Coordinación de Especialidades",
+    description: "Alineamos todas las disciplinas del proyecto en etapa de anteproyecto para identificar conflictos antes de llegar a obra.",
+    features: [
+      "Modelado de Información",
+      "Coordinación multidisciplinaria",
+      "Generación y seguimiento de RDIs",
+      "Detección de interferencias",
+      "Cubicaciones y metrados",
+      "Modelado de Ingeniería de Detalle",
+    ],
+  },
+  {
+    icon: "inspection",
+    tag: "En Obra",
+    tagColor: "amber",
+    title: "Inspección Técnica de Obra",
+    subtitle: "ITO BIM",
+    description: "Guiamos la ejecución de obra respetando el modelo BIM coordinado, con modalidad residente o por visita.",
+    features: [
+      "Cubicaciones y generación de metrados",
+      "Coordinación de especialidades e instaladores",
+      "Modelado de Ingeniería de detalle",
+      "Fases constructivas — Programación 4D",
+      "Modelado As-Built",
+    ],
+  },
+  {
+    icon: "consulting",
+    tag: "Estrategia",
+    tagColor: "green",
+    title: "Consultoría & Capacitación",
+    description: "Asesoramos y capacitamos in-house a empresas que buscan mejorar sus resultados con metodologías modernas de gestión.",
+    features: [
+      "Gestión y Modelamiento BIM – VDC",
+      "Metodologías ágiles de gestión",
+      "Lean Construction – Modelo Toyota",
+      "Sistema de Calidad ISO 9001:2015",
+    ],
+  },
+  {
+    icon: "design",
+    tag: "Diseño",
+    tagColor: "coral",
+    title: "Diseño de Especialidades",
+    description: "Integramos arquitectura, estructuras e instalaciones con compatibilidad BIM para evitar interferencias desde el diseño.",
+    features: [
+      "Arquitectura e interiorismo",
+      "Ingeniería estructural",
+      "Instalaciones sanitarias",
+      "Instalaciones eléctricas y mecánicas",
+      "Compatibilización integral",
+    ],
+  },
+];
+
+const tagColors: Record<string, string> = {
+  indigo: "bg-indigo-500/10 text-indigo-400 border-indigo-500/20",
+  amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
+  green: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+  coral: "bg-rose-500/10 text-rose-400 border-rose-500/20",
+};
+
+const iconPaths: Record<string, string> = {
+  coordination: "M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25",
+  inspection: "M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l5.653-4.655m3.586-3.586a2.548 2.548 0 113.586 3.586m-7.17 7.17l7.17-7.17M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5",
+  consulting: "M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5",
+  design: "M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42",
+};
+---
+
+<section id="servicios-profesionales" class="relative overflow-hidden bg-[#0a0a0a] py-28">
+  <!-- Subtle background pattern -->
+  <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+
+  <!-- Glow accent -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+
+  <div class="relative mx-auto max-w-[1100px] px-6">
+    <!-- Section Header -->
+    <div class="mb-20 text-center">
+      <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5">
+        <div class="h-1.5 w-1.5 rounded-full bg-white/60"></div>
+        <span class="text-xs font-medium tracking-widest text-white/60 uppercase">Servicios Profesionales</span>
+      </div>
+      <h2 class="services-title text-4xl font-bold tracking-tight text-white md:text-5xl" style="font-family: 'DM Serif Display', serif;">
+        Experiencia que se<br/>
+        <span class="text-white/40">traduce en resultados</span>
+      </h2>
+      <p class="mx-auto mt-5 max-w-xl text-base text-white/40 leading-relaxed">
+        Más de 15 años integrando tecnología BIM en cada etapa del ciclo de vida de un proyecto de construcción.
+      </p>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="grid gap-5 md:grid-cols-2">
+      {services.map((service, i) => (
+        <div
+          class="service-card group relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 transition-all duration-500 hover:border-white/[0.12] hover:bg-white/[0.04]"
+          data-index={i}
+        >
+          <!-- Hover glow effect -->
+          <div class="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={`background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.04), transparent 40%);`}></div>
+
+          <!-- Icon + Tag row -->
+          <div class="relative mb-6 flex items-center gap-4">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.04]">
+              <svg class="h-6 w-6 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d={iconPaths[service.icon]} />
+              </svg>
+            </div>
+            <span class={`rounded-full border px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ${tagColors[service.tagColor]}`}>
+              {service.tag}
+            </span>
+            {service.subtitle && (
+              <span class="text-[11px] font-medium text-white/30">{service.subtitle}</span>
+            )}
+          </div>
+
+          <!-- Title -->
+          <h3 class="relative mb-3 text-xl font-bold text-white tracking-tight">
+            {service.title}
+          </h3>
+
+          <!-- Description -->
+          <p class="relative mb-6 text-sm leading-relaxed text-white/40">
+            {service.description}
+          </p>
+
+          <!-- Features list -->
+          <ul class="relative space-y-2.5">
+            {service.features.map((feature) => (
+              <li class="flex items-start gap-3 text-sm text-white/50">
+                <svg class="mt-0.5 h-4 w-4 flex-shrink-0 text-white/20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span class="transition-colors duration-300 group-hover:text-white/60">{feature}</span>
+              </li>
+            ))}
+          </ul>
+
+          <!-- Bottom line accent on hover -->
+          <div class="absolute bottom-0 left-8 right-8 h-[1px] origin-left scale-x-0 bg-gradient-to-r from-white/20 via-white/10 to-transparent transition-transform duration-700 group-hover:scale-x-100"></div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="mt-16 text-center">
+      <a href="#contacto" class="group inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-8 py-4 text-sm font-semibold text-white transition-all duration-300 hover:border-white/20 hover:bg-white/10">
+        Solicitar cotización
+        <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .service-card {
+    will-change: transform;
+  }
+</style>
+
+<script>
+  // Mouse follow glow effect on cards
+  document.querySelectorAll('.service-card').forEach(card => {
+    card.addEventListener('mousemove', (e: Event) => {
+      const mouseEvent = e as MouseEvent;
+      const rect = (card as HTMLElement).getBoundingClientRect();
+      const x = ((mouseEvent.clientX - rect.left) / rect.width) * 100;
+      const y = ((mouseEvent.clientY - rect.top) / rect.height) * 100;
+      (card as HTMLElement).style.setProperty('--mouse-x', `${x}%`);
+      (card as HTMLElement).style.setProperty('--mouse-y', `${y}%`);
+    });
+  });
+
+  // GSAP scroll reveal
+  if (typeof window !== 'undefined') {
+    import('gsap').then(({ gsap }) => {
+      import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Title reveal
+        gsap.from('.services-title', {
+          y: 40,
+          opacity: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '#servicios-profesionales',
+            start: 'top 80%',
+          }
+        });
+
+        // Each card animates individually when it enters viewport
+        document.querySelectorAll('.service-card').forEach((card, i) => {
+          gsap.from(card, {
+            y: 40,
+            opacity: 0,
+            duration: 0.7,
+            delay: i % 2 === 0 ? 0 : 0.12,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 90%',
+            }
+          });
+        });
+      });
+    });
+  }
+</script>
