@@ -2,13 +2,13 @@
 // Ubicación contextual: drone arriba (vuela), casco centro-derecha (obra),
 // tablet centro-izquierda (planos), VR/AR lados (inmersivo), laptop abajo, 360 lateral
 const floatingObjects = [
-  { name: "Drone", img: "/images/drone-Photoroom.png", x: "5%", y: "5%", w: 330, h: 230, rotate: -5, delay: 0, dispX: -180, dispY: -120 },
-  { name: "VR Headset", img: "/images/gafas-Photoroom.png", x: "78%", y: "3%", w: 280, h: 210, rotate: 8, delay: 0.15, dispX: 160, dispY: -100 },
-  { name: "Helmet", img: "/images/casco-Photoroom.png", x: "80%", y: "38%", w: 170, h: 170, rotate: 6, delay: 0.3, dispX: 200, dispY: 60 },
-  { name: "Tablet BIM", img: "/images/ipad-Photoroom.png", x: "1%", y: "48%", w: 255, h: 180, rotate: 5, delay: 0.4, dispX: -200, dispY: 40 },
-  { name: "360 Camera", img: "/images/insta360-Photoroom.png", x: "85%", y: "62%", w: 195, h: 195, rotate: -8, delay: 0.5, dispX: 180, dispY: 140 },
-  { name: "Laptop", img: "/images/laptop-Photoroom.png", x: "3%", y: "72%", w: 235, h: 160, rotate: -6, delay: 0.6, dispX: -160, dispY: 120 },
-  { name: "AR Glasses", img: "/images/lentes-ar-Photoroom.png", x: "80%", y: "78%", w: 190, h: 120, rotate: 4, delay: 0.7, dispX: 150, dispY: 100 },
+  { name: "Drone", img: "/images/drone-Photoroom.png", x: "3%", y: "3%", w: 420, h: 300, rotate: -5, delay: 0, dispX: -200, dispY: -140 },
+  { name: "VR Headset", img: "/images/gafas-Photoroom.png", x: "74%", y: "1%", w: 380, h: 280, rotate: 8, delay: 0.15, dispX: 180, dispY: -120 },
+  { name: "Helmet", img: "/images/casco-Photoroom.png", x: "78%", y: "36%", w: 230, h: 230, rotate: 6, delay: 0.3, dispX: 220, dispY: 70 },
+  { name: "Tablet BIM", img: "/images/ipad-Photoroom.png", x: "-1%", y: "45%", w: 340, h: 240, rotate: 5, delay: 0.4, dispX: -220, dispY: 50 },
+  { name: "360 Camera", img: "/images/insta360-Photoroom.png", x: "83%", y: "60%", w: 260, h: 260, rotate: -8, delay: 0.5, dispX: 200, dispY: 160 },
+  { name: "Laptop", img: "/images/laptop-Photoroom.png", x: "1%", y: "70%", w: 320, h: 220, rotate: -6, delay: 0.6, dispX: -180, dispY: 140 },
+  { name: "AR Glasses", img: "/images/lentes-ar-Photoroom.png", x: "78%", y: "76%", w: 260, h: 170, rotate: 4, delay: 0.7, dispX: 170, dispY: 120 },
 ];
 ---
 
@@ -63,11 +63,11 @@ const floatingObjects = [
     </p>
 
     <div class="flex flex-col items-center gap-3.5 sm:flex-row" style="animation: fadeInUp 0.8s ease-out 0.8s both;">
-      <a href="#tech" class="flex items-center gap-2.5 rounded-full bg-white px-8 py-4 text-[15px] font-semibold text-dark transition-all duration-300 hover:scale-105 hover:bg-white/90">
+      <a href="#tech" class="btn-magnetic icon-spin flex items-center gap-2.5 rounded-full bg-white px-8 py-4 text-[15px] font-semibold text-dark">
         Explorar servicios
         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
       </a>
-      <a href="#proyectos" class="flex items-center gap-2.5 rounded-full border border-white/20 bg-white/5 px-8 py-4 text-[15px] font-medium text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/10">
+      <a href="#proyectos" class="btn-magnetic flex items-center gap-2.5 rounded-full border border-white/20 bg-white/5 px-8 py-4 text-[15px] font-medium text-white backdrop-blur-sm">
         Ver proyectos
       </a>
     </div>
